@@ -1,0 +1,190 @@
+<!-- Group Members:
+Simran Bayas (G01351582), 
+Abhishek Verma(G01358661) -->
+<!-- Represents the form for users to submit a new survey.
+Includes form controls for first name, last name, address, etc.
+Provides checkboxes, radio buttons, dropdowns, and a text area for additional
+comments.
+Submits the form data to the backend using a service. -->
+   
+   <body>
+  
+    <div class="container mt-2 float-right">
+        <form [formGroup]="studentForm" autocomplete="on" (ngSubmit)="validateForm()">
+  
+        <div class="form-group">
+          <label for="username">Username: <span class="required">*</span></label>
+          <input type="text" class="form-control" id="username"  formControlName="username" placeholder="e.g., abhishek" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="street_address">Street Address: <span class="required">*</span></label>
+          <input type="text" class="form-control" id="street_address" formControlName="street_address" placeholder="e.g., 123 Main St" required />
+        </div>
+  
+        <div class="form-group">
+            <label for="city">City: (Autofilled after Zip)<span class="required">*</span></label>
+            <input type="text" class="form-control" id="city"formControlName="city"   placeholder="e.g., New York" required readonly/>
+          </div>
+          <div class="form-group">
+            <label for="state">State: (Autofilled after Zip) <span class="required">*</span></label>
+            <input type="text" class="form-control" id="state" formControlName="state"  placeholder="e.g., VA" required readonly/>
+          </div>
+          <div class="form-group">
+            <label for="zip">Zip: <span class="required">*</span></label>
+            <input
+              type="text"
+              id="zip"
+              formControlName="zip"
+              placeholder="Zip code must be 5 digits long."
+              required
+              (blur)="onZipBlur()"
+            />
+            <div *ngIf="studentForm.get('zip')!.hasError('required') && studentForm.get('zip')!.touched">
+              <span class="text-danger">Zip code is required.</span>
+            </div>
+            <div *ngIf="studentForm.get('zip')!.hasError('pattern') && studentForm.get('zip')!.touched">
+              <span class="text-danger">Zip code must be 5 digits long.</span>
+            </div>
+            <div *ngIf="!isZipValid">
+              <span class="text-danger">Invalid zip code.</span>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="telephone_number">Telephone Number: <span class="required">*</span></label>
+            <input type="text" class="form-control" id="telephone_number" placeholder="Telephone must be 10 digits long."
+              formControlName="telephone_number" />
+           <div *ngIf="studentForm.get('telephone_number')!.hasError('required') && studentForm.get('telephone_number')!.touched">
+  <span class="text-danger">Telephone number is required.</span>
+</div>
+<div *ngIf="studentForm.get('telephone_number')!.hasError('pattern') && studentForm.get('telephone_number')!.touched">
+  <span class="text-danger">Telephone must be 10 digits long.</span>
+</div>
+          </div>
+          
+        <div class="form-group">
+          <label for="email">Email: <span class="required">*</span></label>
+          <input type="email" class="form-control" id="email" placeholder="e.g., abhi.verma@example.com" required  formControlName="email" />
+        </div>
+        <div class="form-group">
+            <label for="url">URL: <span class="required">*</span></label>
+            <input type="url" class="form-control" id="url" formControlName="url" placeholder="e.g., http://www.example.com" required />
+            <div *ngIf="studentForm.get('url')!.hasError('required') && studentForm.get('url')!.touched">
+              <small class="text-danger">URL is required</small>
+            </div>
+            <div *ngIf="studentForm.get('url')!.hasError('pattern') && studentForm.get('url')!.touched">
+              <small class="text-danger">Invalid URL format</small>
+            </div>
+
+        </div>
+  
+        <div class="form-group">
+          <label for="date_of_survey">Date of Survey: <span class="required">*</span></label>
+          <input type="date" class="form-control"  formControlName="date_of_survey"  id="date_of_survey" required />
+        </div>
+        <div class="form-group-poll" formGroupName="likedMostDummy">
+            <label>What did you like most about the campus?</label>
+            
+            <div *ngFor="let option of likeaboutOptions" class="form-check">
+              <input class="form-check-input" type="checkbox" id="{{ option }}" formControlName="{{ option }}" />
+              <label class="form-check-label" for="{{ option }}">
+                {{ option }}
+              </label>
+            </div>
+          </div>
+        
+        <div class="form-group-poll">
+          <label>How did you become interested in the university?</label>
+  
+  
+          <div class="form-check form-check">
+            <input class="form-check-input" type="radio" id="friends" formControlName="interest_source" value="friends" />
+            <label class="form-check-label" for="friends">Friends</label>
+          </div>
+  
+  
+  
+          <div class="form-check form-check">
+            <input class="form-check-input" type="radio" id="television" formControlName="interest_source" value="television" />
+            <label class="form-check-label" for="television">Television</label>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="radio" id="internet" formControlName="interest_source" value="internet" />
+            <label class="form-check-label" for="internet">Internet</label>
+          </div>
+          <div class="form-check form-check">
+            <input class="form-check-input" type="radio" id="other" formControlName="interest_source" value="other" />
+            <label class="form-check-label" for="other">Other</label>
+          </div>
+        </div>
+  
+  
+        <div class="form-group-poll mt-3">
+          <label for="comments">Additional comments:</label>
+          <textarea class="form-control" id="comments" rows="3"  formControlName="comments"></textarea>
+        </div>
+  
+        <div class="form-group-poll mt-3">
+          <label for="graduation_month">High School Graduation Month:</label>
+          <input type="text" list="months" id="graduation_month"  formControlName="graduation_month"placeholder="e.g. November">
+          <datalist id="months">
+            <option value="January">
+            <option value="February">
+            <option value="March">
+            <option value="April">
+            <option value="May">
+            <option value="June">
+            <option value="July">
+            <option value="August">
+            <option value="September">
+            <option value="October">
+            <option value="November">
+            <option value="December">
+          </datalist>
+        </div>
+        <div class="form-group-poll mt-3">
+            <label for="graduation_year">High School Graduation Year:</label>
+            <input
+              type="text"
+              id="graduation_year"
+              formControlName="graduation_year"
+              placeholder="e.g. 2024"
+            />
+            <div *ngIf="studentForm.get('graduation_year')!.hasError('pattern') && studentForm.get('graduation_year')!.touched">
+              <span class="text-danger">Please enter a valid 4-digit year.</span>
+            </div>
+        </div>
+        <div class="form-group-poll mt-3">
+          <label for="recommendation">Likelihood of recommending this school:</label>
+          <select class="form-control" id="recommendation"  formControlName="recommendation">
+            <option selected disabled>Select an Option</option>
+            <option>Very Likely</option>
+            <option>Likely</option>
+            <option>Unlikely</option>
+          </select>
+        </div>
+  
+        <div class="form-group-poll mt-3">
+            <label for="data_range">Data: <span class="required">*</span></label>
+            <input type="text" id="data_range" formControlName="data_range" placeholder="Enter 10 numbers separated by commas"
+              (blur)="calculateAverageAndMaximum()" required>
+          </div>
+  
+        <!-- Output fields -->
+        <div class="form-group-poll mt-3">
+            <label for="average_output">Average:</label>
+            <input type="text" id="average_output" formControlName="average_output" readonly>
+          </div>
+      
+          <div class="form-group-poll mt-3">
+            <label for="maximum_output">Maximum:</label>
+            <input type="text" id="maximum_output" formControlName="maximum_output" readonly>
+          </div>
+          <div class="form-group mt-3 text-center">
+            <button id="submit-btn" type="submit" class="btn btn-success mr-2"  [disabled]="!studentForm.valid">Submit</button>
+            <button id="cancel-btn" type="reset" class="btn btn-danger">Reset</button>
+          </div>
+      </form>
+    </div>
+</body>

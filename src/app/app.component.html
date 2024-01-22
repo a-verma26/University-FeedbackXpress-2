@@ -1,0 +1,44 @@
+<!-- src/app/app.component.html -->
+<!-- Group Members:
+Simran Bayas (G01351582), 
+Abhishek Verma(G01358661) -->
+<!-- It contains two links: "Student Survey" and "List All Surveys with the greeting message" -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #006633;">
+  <div class="container-fluid">
+    
+    <img src="https://www.gmu.edu/sites/g/files/yyqcgq291/files/mason-logo_0.png" alt="Logo" class="homeLogoIcon">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a  class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link" routerLink="/survey">Student Survey</a>
+        </li>
+
+        <li class="nav-item">
+          <a  class="nav-link" routerLink="/get-surveys">List All Surveys</a>
+        </li>
+      </ul>
+
+    </div>
+    
+  </div>
+
+  <span *ngIf="greetingMessage">
+    <p class="greeting-text">{{ greetingMessage }}</p>
+    <span class="hyperlink-text"(click)="wrongPerson()" style="cursor: pointer;">{{ hyperlink }}</span>
+  </span>
+  
+</nav>
+<div class="container welcome-container" *ngIf="isHomeRoute()">
+  <h1 class="welcome-heading">Welcome to SWE 642 HW3</h1>
+  <h4>Full-Stack Application Development Assignment</h4>
+  <p class="welcome-text">Experience full-stack application development with Angular for the frontend and a Spring Boot backend powered by RESTful Web Services <br>using JPA and MySQL as the database.</p>
+ <em> <p class="welcome-text-short">~ Developed by Simran Bayas and Abhishek Verma</p></em>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,93 @@
+/* Group Members:
+Simran Bayas (G01351582), 
+Abhishek Verma(G01358661) */
+
+ .navbar {
+    font-family: sans-serif;
+    font-size: 18px;
+    border: 5px solid #006633;
+    padding: 0;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  
+  .custom-green-bg {
+    background-color: #006633;
+  }
+  
+  .navbar-brand {
+    color: white;
+  }
+  
+  .navbar-nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  
+  }
+  
+  .nav-item {
+    padding: 0px;
+    margin-right: 10px;
+  }
+  
+  .nav-link {
+    color: #FFCC33 !important;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    color: #FFCC33 !important;
+  }
+  
+  .nav-icon {
+    margin-right: 5px;
+  }
+  
+  .navbar-brand img {
+    width: 300px;
+  
+  }
+  
+  .text-justify {
+    display: flex;
+    justify-content: space-between;
+    text-align: justify;
+  }
+  
+  .homeLogoIcon {
+    width: 110px;
+  }
+  .navbar-text{
+    font-size: 14px;
+  }
+  .welcome-container {
+    text-align: right;
+    margin-top: 100px;
+    margin-right: 100px;
+  }
+  
+  .welcome-heading {
+    font-size: 44px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .welcome-text {
+    margin-top: 10%;
+    font-size: 30px;
+    color: #555;
+  }
+  .welcome-text-short{
+    margin-top: 3%;
+    font-size: 20px;
+    color: #555;
+  }
+  .greeting-text{
+    color: white;
+  }
+  .hyperlink-text{
+    color: #FFCC33;
+    cursor: pointer;
+  }

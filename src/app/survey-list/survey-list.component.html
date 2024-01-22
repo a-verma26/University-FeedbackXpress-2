@@ -1,0 +1,69 @@
+<!-- Group Members:
+Simran Bayas (G01351582), 
+Abhishek Verma(G01358661) -->
+<!-- Responsible for displaying a list of surveys.
+Uses a service to fetch survey data from the backend.
+Includes buttons to update and delete surveys. -->
+<div class="container-fluid">
+    <h2>Survey List</h2>
+    <div class="table-container">
+
+    <table class="table table-bordered table-striped custom-table">
+     
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Street Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>ZIP</th>
+          <th>Telephone Number</th>
+          <th>Email</th>
+          <th>URL</th>
+          <th>Date of Survey</th>
+          <th>Interest Source</th>
+          <th>Comments</th>
+          <th>Liked Most</th>
+          <th>Graduation Month</th>
+          <th>Graduation Year</th>
+          <th>Recommendation</th>
+          <th>Data Range</th>
+          <th>Average Output</th>
+          <th>Maximum Output</th>
+          <th>Actions</th> <!-- Add a new column for actions -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let survey of surveys">
+            <td>{{ survey.id }}</td>
+          <td>{{ survey.username }}</td>
+          <td>{{ survey.street_address }}</td>
+          <td>{{ survey.city }}</td>
+          <td>{{ survey.state }}</td>
+          <td>{{ survey.zip }}</td>
+          <td>{{ survey.telephone_number }}</td>
+          <td>{{ survey.email }}</td>
+          <td>{{ survey.url }}</td>
+          <td>{{ survey.date_of_survey }}</td>
+          <td>{{ survey.interest_source }}</td>
+          <td>{{ survey.comments }}</td>
+          <td>{{ survey.liked_most }}</td>
+          <td>{{ survey.graduation_month }}</td>
+          <td>{{ survey.graduation_year }}</td>
+          <td>{{ survey.recommendation }}</td>
+          <td>{{ survey.data_range }}</td>
+          <td>{{ survey.average_output }}</td>
+          <td>{{ survey.maximum_output }}</td>
+          <td>
+            <div class="d-flex flex-column align-items-center">
+              <button class="btn btn-info mb-2" (click)="updateSurvey(survey.id)">Update</button>
+              <button class="btn btn-danger" (click)="deleteSurvey(survey.id)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+  </div>
+  

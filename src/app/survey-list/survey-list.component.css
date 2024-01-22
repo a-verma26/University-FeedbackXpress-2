@@ -1,0 +1,35 @@
+/* Group Members:
+Simran Bayas (G01351582), 
+Abhishek Verma(G01358661) */
+
+/* css to show list of surveys in tabular form */
+
+.custom-table {
+    background-color: white; /* Set the background color to white */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    border-radius: 10px; /* Apply rounded corners */
+    margin-top: 20px; /* Add margin to separate the table from the heading */
+
+  }
+  
+  /* Additional styling for table headers and cells if needed */
+  .custom-table th,
+  .custom-table td {
+    padding: 10px; /* Add padding to cells */
+    text-align: left; /* Adjust text alignment if needed */
+  }
+  
+  /* Optional: Add some padding to the table */
+  .custom-table {
+    padding: 10px;
+  }
+  .container-fluid h2 {
+    font-size: 34px; /* Adjust the font size */
+    color: #333; /* Set the text color */
+    margin-bottom: 20px; /* Add margin at the bottom for better spacing */
+    margin-top: 20px; /* Add margin at the bottom for better spacing */
+    text-align: center;
+  }
+  .table-container{
+    overflow-x: auto;
+  }
